@@ -22,6 +22,44 @@ app.mount("/static", StaticFiles(directory=os.path.join(Path(__file__).parent,
 # In-memory activity database
 activities = {
     # Intellectual activities
+    "Science Club": {
+        "description": "Conduct experiments and explore scientific concepts",
+        "schedule": "Thursdays, 4:00 PM - 5:30 PM",
+        "max_participants": 16,
+        "participants": ["eva@mergington.edu"]
+    },
+    "Robotics Team": {
+        "description": "Design, build, and program robots for competitions",
+        "schedule": "Saturdays, 1:00 PM - 3:00 PM",
+        "max_participants": 10,
+        "participants": ["liam@mergington.edu"]
+    },
+    # Artistic activities
+    "Photography Club": {
+        "description": "Learn photography techniques and showcase your work",
+        "schedule": "Fridays, 4:00 PM - 5:30 PM",
+        "max_participants": 12,
+        "participants": ["mia@mergington.edu"]
+    },
+    "Music Ensemble": {
+        "description": "Perform music in a group and participate in concerts",
+        "schedule": "Wednesdays, 3:30 PM - 5:00 PM",
+        "max_participants": 15,
+        "participants": ["jack@mergington.edu"]
+    },
+    # Sports related activities
+    "Track and Field": {
+        "description": "Train and compete in running, jumping, and throwing events",
+        "schedule": "Tuesdays and Fridays, 4:00 PM - 5:30 PM",
+        "max_participants": 20,
+        "participants": ["oliver@mergington.edu"]
+    },
+    "Tennis Club": {
+        "description": "Practice tennis skills and play matches",
+        "schedule": "Thursdays, 4:00 PM - 5:30 PM",
+        "max_participants": 8,
+        "participants": ["ava@mergington.edu"]
+    },
     "Chess Club": {
         "description": "Learn strategies and compete in chess tournaments",
         "schedule": "Fridays, 3:30 PM - 5:00 PM",
@@ -89,8 +127,7 @@ activities = {
         "participants": ["john@mergington.edu", "olivia@mergington.edu"]
     },
 }
-    # Sports related activities
-    "Soccer Team": {
+   
 
 
 @app.get("/")
@@ -113,7 +150,7 @@ def signup_for_activity(activity_name: str, email: str):
 
     # Get the specific activity
     activity = activities[activity_name]
-
+    # Validate student is not already signed up for the activity
     # Add student
     activity["participants"].append(email)
     return {"message": f"Signed up {email} for {activity_name}"}
