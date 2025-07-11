@@ -38,8 +38,9 @@ activities = {
         "schedule": "Mondays, Wednesdays, Fridays, 2:00 PM - 3:00 PM",
         "max_participants": 30,
         "participants": ["john@mergington.edu", "olivia@mergington.edu"]
-    }
-}
+    },
+    # Sports related activities
+    "Soccer Team": {
 
 
 @app.get("/")
@@ -54,6 +55,7 @@ def get_activities():
 
 @app.post("/activities/{activity_name}/signup")
 def signup_for_activity(activity_name: str, email: str):
+    # Validate student is not already signed up for the activity
     """Sign up a student for an activity"""
     # Validate activity exists
     if activity_name not in activities:
